@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingassistantservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shoppingassistantservice
+  template:
+    metadata:
+      labels:
+        app: shoppingassistantservice
+    spec:
+      imagePullSecrets:
+        - name: ecr-creds
+      containers:
+        - name: shoppingassistantservice
+          image: 029767002935.dkr.ecr.ap-northeast-1.amazonaws.com/shoppingassistantservice
+          ports:
+            - containerPort: 8080
